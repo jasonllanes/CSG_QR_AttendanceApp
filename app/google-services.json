@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "913037396545",
+    "project_id": "csg-attendance",
+    "storage_bucket": "csg-attendance.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:913037396545:android:98189f9565cbde7cf7d4c0",
+        "android_client_info": {
+          "package_name": "com.example.csg_attendance_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "913037396545-avdcrhalapt2uc6v9rh135u2dc6dcsgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDx_RoJVfwMtyOk7015w2AIlmyRRuc46XU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "913037396545-avdcrhalapt2uc6v9rh135u2dc6dcsgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

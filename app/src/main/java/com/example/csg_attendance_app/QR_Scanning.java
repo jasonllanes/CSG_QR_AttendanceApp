@@ -22,7 +22,7 @@ import com.google.zxing.Result;
 public class QR_Scanning extends AppCompatActivity {
     private CodeScanner mCodeScanner;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
-    TextView tv_details;
+    TextView tv_time,tv_details;
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,13 @@ public class QR_Scanning extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, MY_CAMERA_REQUEST_CODE);
         }
 
+        String time = getIntent().getStringExtra("Time");
+        tv_time = findViewById(R.id.tv_time);
+        tv_time.setText(time);
+
         tv_details = findViewById(R.id.tv_details);
+
+
 
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
         mCodeScanner = new CodeScanner(this, scannerView);

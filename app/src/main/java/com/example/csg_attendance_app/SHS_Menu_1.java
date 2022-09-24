@@ -32,6 +32,7 @@ public class SHS_Menu_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(SHS_Menu_1.this,QR_Scanning.class);
+                intent.putExtra("Time","Morning Out");
                 startActivity(intent);
             }
         });
@@ -41,6 +42,7 @@ public class SHS_Menu_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(SHS_Menu_1.this,QR_Scanning.class);
+                intent.putExtra("Time","Afternoon In");
                 startActivity(intent);
             }
         });
@@ -49,6 +51,7 @@ public class SHS_Menu_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(SHS_Menu_1.this,QR_Scanning.class);
+                intent.putExtra("Time","Afternoon Out");
                 startActivity(intent);
             }
         });
