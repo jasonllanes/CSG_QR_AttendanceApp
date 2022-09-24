@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".QR_Scanning">
+    tools:context=".QR_Scanning"
+    android:id="@+id/mainLayout">
 
     <TextView
         android:id="@+id/tv_time"
@@ -37,7 +38,7 @@
         android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@color/yellow"
-        android:text="$DETAILS HERE$"/>
+        android:text="Jaycon Jude Madrid\nSenior High School\nICT\nGrade 11"/>
 
     <TextView
         android:layout_marginTop="20dp"
