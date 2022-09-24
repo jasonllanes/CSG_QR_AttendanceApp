@@ -14,9 +14,19 @@
         android:layout_marginTop="150dp"
         android:fontFamily="@font/font"
         android:gravity="center"
-        android:text="Time for IN and Out"
+        android:text="College/Tertiary"
         android:textColor="@color/blue"
         android:textSize="30dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/font"
+        android:gravity="center"
+        android:text="Time for IN and Out:"
+        android:textColor="@color/black"
+        android:textSize="20dp" />
 
     <LinearLayout
         android:layout_marginTop="50dp"
@@ -26,7 +36,7 @@
         android:gravity="center">
         <Button
             android:id="@+id/btn_morning_in"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Morning IN"
             android:background="@color/yellow"
@@ -35,7 +45,7 @@
             android:padding="15dp"/>
         <Button
             android:id="@+id/btn_morning_out"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Morning OUT"
             android:background="@color/yellow"
@@ -51,7 +61,7 @@
         android:gravity="center">
         <Button
             android:id="@+id/btn_afternoon_in"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Afternoon IN"
             android:background="@color/yellow"
@@ -60,7 +70,7 @@
             android:padding="15dp"/>
         <Button
             android:id="@+id/btn_afternoon_out"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Afternoon OUT"
             android:background="@color/yellow"

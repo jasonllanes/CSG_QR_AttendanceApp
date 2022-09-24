@@ -15,7 +15,7 @@
         android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@color/yellow"
-        android:text="$TIME$"/>
+        android:text="COLLEGE/TERTIARY | Morning IN"/>
 
     <FrameLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
