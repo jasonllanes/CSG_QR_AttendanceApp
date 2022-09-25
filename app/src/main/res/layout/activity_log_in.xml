@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/logInLayout"
     tools:context=".LogIn">
 
 
@@ -12,8 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/yellow"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,13 +23,23 @@
             android:gravity="center"
             android:layout_margin="10dp">
 
+            <ImageView
+                android:layout_width="185dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"
+                android:background="@drawable/csg_logo"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <TextView
                 android:id="@+id/tv_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font"
                 android:gravity="center"
-                android:text="LOG IN"
+                android:text="Kinsa ka?"
                 android:textColor="@color/yellow"
                 android:textSize="35dp" />
 
@@ -41,25 +51,25 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:textSize="20dp"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
+                android:hint="Username"
+                android:inputType="text"
                 android:textColorHint="@color/yellow"
                 android:backgroundTint="@color/yellow"
                 android:textColor="@color/black"/>
 
-            <EditText
-                android:id="@+id/et_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:textSize="20dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:backgroundTint="@color/yellow"
-                android:textColorHint="@color/yellow"
-                android:textColor="@color/black"/>
+<!--            <EditText-->
+<!--                android:id="@+id/et_password"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="30dp"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginRight="20dp"-->
+<!--                android:textSize="20dp"-->
+<!--                android:hint="Password"-->
+<!--                android:inputType="textPassword"-->
+<!--                android:backgroundTint="@color/yellow"-->
+<!--                android:textColorHint="@color/yellow"-->
+<!--                android:textColor="@color/black"/>-->
 
             <Button
                 android:id="@+id/btn_login"
@@ -69,7 +79,7 @@
                 android:layout_gravity="center"
                 android:background="@color/yellow"
                 android:textStyle="bold"
-                android:text="Log In"/>
+                android:text="Sulod"/>
 
         </LinearLayout>
 

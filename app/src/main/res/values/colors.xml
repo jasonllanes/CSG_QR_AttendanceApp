@@ -10,4 +10,6 @@
     <color name="yellow">#FFC107</color>
     <color name="blue">#2196F3</color>
     <color name="grey">#F1F2F3</color>
+    <color name="green">#2CDF04</color>
+    <color name="red">#DF0404</color>
 </resources>

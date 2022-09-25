@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/yellow"
+    android:background="@color/white"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -25,9 +25,17 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="20dp"
             android:gravity="center"
-            android:fontFamily="@font/font"
+            android:textSize="20dp"
+            android:text="______________________________"
+            android:textColor="@color/blue"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
             android:textSize="20dp"
             android:text="Made by Autodidactics."
             android:textColor="@color/blue"/>

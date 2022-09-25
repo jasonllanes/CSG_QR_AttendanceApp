@@ -22,7 +22,7 @@
         android:id="@+id/digitalClock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:format12Hour="HH:mm:ss a"
+        android:format24Hour="HH:mm:ss a"
         android:textStyle="bold"
         android:textColor="@color/white"
         android:layout_gravity="center"
@@ -42,11 +42,12 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
@@ -57,7 +58,7 @@
                 android:textColor="@color/black"
                 android:textAlignment="center"
                 android:background="@color/yellow"
-                android:text="Jaycon Jude Madrid\nSenior High School\nICT\nGrade 11"/>
+                android:text="$DETAILS$"/>
 
             <TextView
                 android:layout_marginTop="20dp"
