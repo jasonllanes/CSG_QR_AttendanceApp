@@ -23,7 +23,7 @@ public class CT_Menu_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(CT_Menu_1.this,QR_Scanning.class);
-                intent.putExtra("Time","COLLEGE/TERTIARY | Morning In");
+                intent.putExtra("Time","COLLEGE | Morning IN");
                 startActivity(intent);
             }
         });
@@ -32,7 +32,7 @@ public class CT_Menu_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(CT_Menu_1.this,QR_Scanning.class);
-                intent.putExtra("Time","COLLEGE/TERTIARY | Morning Out");
+                intent.putExtra("Time","COLLEGE | Morning OUT");
                 startActivity(intent);
             }
         });
@@ -41,7 +41,7 @@ public class CT_Menu_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(CT_Menu_1.this,QR_Scanning.class);
-                intent.putExtra("Time","COLLEGE/TERTIARY | Afternoon In");
+                intent.putExtra("Time","COLLEGE | Afternoon IN");
                 startActivity(intent);
             }
         });
@@ -50,7 +50,7 @@ public class CT_Menu_1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(CT_Menu_1.this,QR_Scanning.class);
-                intent.putExtra("Time","COLLEGE/TERTIARY | Afternoon Out");
+                intent.putExtra("Time","COLLEGE | Afternoon OUT");
                 startActivity(intent);
             }
         });

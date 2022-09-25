@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextClock;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,22 +29,30 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.Result;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class QR_Scanning extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     private CodeScanner mCodeScanner;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
-    TextView tv_time,tv_details;
+    TextView tv_time,tv_timee,tv_details;
 
     Button btn_submit;
 
-    String year,department,course,fullname = " ";
+    String year,department,course,fullname,currentTime = " ";
 
     LinearLayout linearLayout;
+
+    TextClock tc_time;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanning);
+
 
 
         linearLayout = (LinearLayout) findViewById(R.id.mainLayout);
@@ -56,9 +65,13 @@ public class QR_Scanning extends AppCompatActivity {
 
         btn_submit = findViewById(R.id.btn_submit);
         tv_time = findViewById(R.id.tv_time);
+        tc_time = findViewById(R.id.digitalClock);
         tv_details = findViewById(R.id.tv_details);
 
         tv_time.setText(time);
+
+
+
 
         DatabaseReference myRef = database.getReference(tv_time.getText().toString());
 
@@ -70,7 +83,7 @@ public class QR_Scanning extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                currentTime = tc_time.getText().toString();
                 String[] details_split = details.split("\n");
                 for (int i=0; i < details_split.length; i++){
                     fullname = details_split[0];
@@ -78,12 +91,12 @@ public class QR_Scanning extends AppCompatActivity {
                     course = details_split[2];
                     year = details_split[3];
                 }
-                Accounts acc = new Accounts(fullname,department,year,course);
+                Accounts acc = new Accounts(fullname,department,year,course,currentTime);
                 myRef.child(fullname).setValue(acc).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         @SuppressLint("ResourceAsColor") Snackbar snackbar = Snackbar
-                                .make(linearLayout, "Success!", Snackbar.LENGTH_LONG).setBackgroundTint(R.color.yellow);
+                                .make(linearLayout, "Success!", Snackbar.LENGTH_LONG).setTextColor(0xffffff).setBackgroundTint(0xffd633);
                         snackbar.show();
                     }
                 });

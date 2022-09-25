@@ -41,16 +41,14 @@
             android:text="Morning IN"
             android:background="@color/yellow"
             android:textColor="@color/blue"
-            android:layout_marginRight="20dp"
-            android:padding="15dp"/>
+            android:layout_marginRight="20dp" />
         <Button
             android:id="@+id/btn_morning_out"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Morning OUT"
             android:background="@color/yellow"
-            android:textColor="@color/blue"
-            android:padding="15dp"/>
+            android:textColor="@color/blue" />
     </LinearLayout>
 
     <LinearLayout
@@ -66,16 +64,14 @@
             android:text="Afternoon IN"
             android:background="@color/yellow"
             android:textColor="@color/blue"
-            android:layout_marginRight="20dp"
-            android:padding="15dp"/>
+            android:layout_marginRight="20dp" />
         <Button
             android:id="@+id/btn_afternoon_out"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Afternoon OUT"
             android:background="@color/yellow"
-            android:textColor="@color/blue"
-            android:padding="15dp"/>
+            android:textColor="@color/blue" />
     </LinearLayout>
 
 </LinearLayout>

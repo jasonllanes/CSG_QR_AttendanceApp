@@ -11,7 +11,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/blue"
+        android:background="@color/yellow"
         android:orientation="vertical"
         android:layout_margin="10dp">
 
@@ -20,17 +20,17 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical"
+            android:gravity="center"
             android:layout_margin="10dp">
 
             <TextView
                 android:id="@+id/tv_login"
-                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font"
                 android:gravity="center"
                 android:text="LOG IN"
-                android:textColor="@color/blue"
+                android:textColor="@color/yellow"
                 android:textSize="35dp" />
 
             <EditText
@@ -43,8 +43,9 @@
                 android:textSize="20dp"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:textColorHint="@color/blue"
-                android:textColor="@color/blue"/>
+                android:textColorHint="@color/yellow"
+                android:backgroundTint="@color/yellow"
+                android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/et_password"
@@ -56,16 +57,17 @@
                 android:textSize="20dp"
                 android:hint="Password"
                 android:inputType="textPassword"
-                android:textColorHint="@color/blue"
-                android:textColor="@color/blue"/>
+                android:backgroundTint="@color/yellow"
+                android:textColorHint="@color/yellow"
+                android:textColor="@color/black"/>
 
             <Button
                 android:id="@+id/btn_login"
                 android:layout_marginTop="50dp"
-                android:layout_width="150dp"
+                android:layout_width="250dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:background="@color/blue"
+                android:background="@color/yellow"
                 android:textStyle="bold"
                 android:text="Log In"/>
 
