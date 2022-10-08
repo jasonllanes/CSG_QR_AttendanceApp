@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -83,33 +84,37 @@ public class QR_Scanning extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentTime = tc_time.getText().toString();
-
-                try{
-                    String details = tv_details.getText().toString();
-                    String[] details_split = details.split("\n");
-                    for (int i=0; i < details_split.length; i++){
-                        fullname = details_split[0];
-                        department = details_split[1];
-                        course = details_split[2];
-                        year = details_split[3];
-                    }
-
-                    Accounts acc = new Accounts(fullname,department,year,course,currentTime);
-                    myRef.child(fullname).setValue(acc).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            @SuppressLint("ResourceAsColor") Snackbar snackbar = Snackbar
-                                    .make(linearLayout, "Nice ka one " + fullname.toUpperCase() + "!", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.black)).setBackgroundTint(getResources().getColor(R.color.green));
-                            snackbar.show();
-                        }
-                    });
-                }catch (ArrayIndexOutOfBoundsException e){
-                    Snackbar snackbar = Snackbar
-                            .make(linearLayout, "Dili mana mao na QR Code chuy", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.white)).setBackgroundTint(getResources().getColor(R.color.red));
-                    snackbar.show();
-                }
-
+                Dialog dialog = new Dialog(QR_Scanning.this);
+                dialog.setContentView(R.layout.result_popup);
+                dialog.setCancelable(true);
+                dialog.show();
+//                currentTime = tc_time.getText().toString();
+//
+//                try{
+//                    String details = tv_details.getText().toString();
+//                    String[] details_split = details.split("\n");
+//                    for (int i=0; i < details_split.length; i++){
+//                        fullname = details_split[0];
+//                        department = details_split[1];
+//                        course = details_split[2];
+//                        year = details_split[3];
+//                    }
+//
+//                    Accounts acc = new Accounts(fullname,department,year,course,currentTime);
+//                    myRef.child(fullname).setValue(acc).addOnCompleteListener(new OnCompleteListener<Void>() {
+//                        @Override
+//                        public void onComplete(@NonNull Task<Void> task) {
+//                            @SuppressLint("ResourceAsColor") Snackbar snackbar = Snackbar
+//                                    .make(linearLayout, "Nice ka one " + fullname.toUpperCase() + "!", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.black)).setBackgroundTint(getResources().getColor(R.color.green));
+//                            snackbar.show();
+//                        }
+//                    });
+//                }catch (ArrayIndexOutOfBoundsException e){
+//                    Snackbar snackbar = Snackbar
+//                            .make(linearLayout, "Dili mana mao na QR Code chuy", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.white)).setBackgroundTint(getResources().getColor(R.color.red));
+//                    snackbar.show();
+//                }
+//
 
 
             }
