@@ -37,6 +37,7 @@ dependencies {
 //QR Code scanner
     implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
     implementation 'com.google.firebase:firebase-database:20.0.6'
+    implementation 'com.google.firebase:firebase-storage:20.0.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

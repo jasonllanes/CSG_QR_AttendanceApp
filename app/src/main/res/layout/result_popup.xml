@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/yellow">
+    android:background="@color/yellow"
+    android:padding="25dp">
 
     <TextView
         android:id="@+id/tv_name"
@@ -12,9 +13,11 @@
         android:textSize="25dp"
         android:gravity="center_horizontal"
         android:textColor="@color/black"
-        android:text="Char present si Jason bay"/>
+        android:textStyle="bold"
+        android:text="CHAR PRESENT BAY!"/>
 
     <ImageView
+        android:id="@+id/ivProfile"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal"/>
@@ -37,6 +40,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="SUBMIT"
-        android:textColor="@color/black"
-        android:background="@color/yellow"/>
+        android:textColor="@color/yellow"
+        android:background="@color/black"/>
 </LinearLayout>

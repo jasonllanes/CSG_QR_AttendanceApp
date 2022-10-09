@@ -11,10 +11,14 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextClock;
 import android.widget.TextView;
@@ -24,10 +28,14 @@ import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.google.zxing.Result;
 
 import java.text.SimpleDateFormat;
@@ -36,10 +44,13 @@ import java.util.Locale;
 
 public class QR_Scanning extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    StorageReference storageRef;
+    final long ONE_MEGABYTE = 1024 * 1024;
+
     private CodeScanner mCodeScanner;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
     TextView tv_time,tv_timee,tv_details;
-
+    ImageView iv_profile;
     Button btn_submit;
 
     String year,department,course,fullname,currentTime = " ";
@@ -54,7 +65,9 @@ public class QR_Scanning extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanning);
 
-
+        Dialog dialog = new Dialog(QR_Scanning.this);
+        dialog.setContentView(R.layout.result_popup);
+        dialog.setCancelable(true);
 
         linearLayout = (LinearLayout) findViewById(R.id.mainLayout);
 
@@ -64,10 +77,12 @@ public class QR_Scanning extends AppCompatActivity {
 
         String time = getIntent().getStringExtra("Time");
 
-        btn_submit = findViewById(R.id.btn_submit);
+        btn_submit = dialog.findViewById(R.id.btn_submit);
         tv_time = findViewById(R.id.tv_time);
         tc_time = findViewById(R.id.digitalClock);
-        tv_details = findViewById(R.id.tv_details);
+
+        tv_details = dialog.findViewById(R.id.tv_details);
+        iv_profile = dialog.findViewById(R.id.ivProfile);
 
         tv_time.setText(time);
 
@@ -84,37 +99,35 @@ public class QR_Scanning extends AppCompatActivity {
         btn_submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Dialog dialog = new Dialog(QR_Scanning.this);
-                dialog.setContentView(R.layout.result_popup);
-                dialog.setCancelable(true);
-                dialog.show();
-//                currentTime = tc_time.getText().toString();
-//
-//                try{
-//                    String details = tv_details.getText().toString();
-//                    String[] details_split = details.split("\n");
-//                    for (int i=0; i < details_split.length; i++){
-//                        fullname = details_split[0];
-//                        department = details_split[1];
-//                        course = details_split[2];
-//                        year = details_split[3];
-//                    }
-//
-//                    Accounts acc = new Accounts(fullname,department,year,course,currentTime);
-//                    myRef.child(fullname).setValue(acc).addOnCompleteListener(new OnCompleteListener<Void>() {
-//                        @Override
-//                        public void onComplete(@NonNull Task<Void> task) {
-//                            @SuppressLint("ResourceAsColor") Snackbar snackbar = Snackbar
-//                                    .make(linearLayout, "Nice ka one " + fullname.toUpperCase() + "!", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.black)).setBackgroundTint(getResources().getColor(R.color.green));
-//                            snackbar.show();
-//                        }
-//                    });
-//                }catch (ArrayIndexOutOfBoundsException e){
-//                    Snackbar snackbar = Snackbar
-//                            .make(linearLayout, "Dili mana mao na QR Code chuy", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.white)).setBackgroundTint(getResources().getColor(R.color.red));
-//                    snackbar.show();
-//                }
-//
+
+                currentTime = tc_time.getText().toString();
+
+                try{
+                    String details = tv_details.getText().toString();
+                    String[] details_split = details.split("\n");
+                    for (int i=0; i < details_split.length; i++){
+                        fullname = details_split[0];
+                        department = details_split[1];
+                        course = details_split[2];
+                        year = details_split[3];
+                    }
+
+                    Accounts acc = new Accounts(fullname,department,year,course,currentTime);
+                    myRef.child(fullname).setValue(acc).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            @SuppressLint("ResourceAsColor") Snackbar snackbar = Snackbar
+                                    .make(linearLayout, "Nice ka one " + fullname.toUpperCase() + "!", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.black)).setBackgroundTint(getResources().getColor(R.color.green));
+                            snackbar.show();
+                            dialog.cancel();
+                        }
+                    });
+                }catch (ArrayIndexOutOfBoundsException e){
+                    Snackbar snackbar = Snackbar
+                            .make(linearLayout, "Dili mana mao na QR Code chuy", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.white)).setBackgroundTint(getResources().getColor(R.color.red));
+                    snackbar.show();
+                }
+
 
 
             }
@@ -128,8 +141,47 @@ public class QR_Scanning extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
+
                         tv_details.setText(result.getText());
+
+                        try{
+                            String details = tv_details.getText().toString();
+                            String[] details_split = details.split("\n");
+                            for (int i=0; i < details_split.length; i++){
+                                fullname = details_split[0];
+                                department = details_split[1];
+                                course = details_split[2];
+                                year = details_split[3];
+                            }
+                        } catch (ArrayIndexOutOfBoundsException e){
+                            Snackbar snackbar = Snackbar
+                                    .make(linearLayout, "Dili mana mao na QR Code chuy", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.white)).setBackgroundTint(getResources().getColor(R.color.red));
+                            snackbar.show();
+                        }
+                        System.out.println(fullname.replaceAll("\\s+","").toUpperCase());
+                        storageRef = FirebaseStorage.getInstance().getReference("/Profile/"+ fullname.replaceAll("\\s+","").toUpperCase());
+                        storageRef.getBytes(ONE_MEGABYTE)
+                                        .addOnSuccessListener(new OnSuccessListener<byte[]>() {
+                                            @Override
+                                            public void onSuccess(byte[] bytes) {
+                                                Bitmap bm = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                                DisplayMetrics dm = new DisplayMetrics();
+                                                getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+
+                                                iv_profile.setMinimumHeight(dm.heightPixels);
+                                                iv_profile.setMinimumWidth(dm.widthPixels);
+                                                iv_profile.setImageBitmap(bm);
+                                            }
+                                        }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(QR_Scanning.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
                         Toast.makeText(QR_Scanning.this, result.getText(), Toast.LENGTH_SHORT).show();
+
+                        dialog.show();
                     }
                 });
             }
