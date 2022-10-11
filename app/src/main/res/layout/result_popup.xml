@@ -4,13 +4,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/yellow"
-    android:padding="25dp">
+    android:padding="10dp">
 
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="25dp"
+        android:textSize="15dp"
         android:gravity="center_horizontal"
         android:textColor="@color/black"
         android:textStyle="bold"
@@ -26,7 +26,7 @@
         android:id="@+id/tv_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20dp"
+        android:textSize="15dp"
         android:textColor="@color/black"
         android:textAlignment="center"
         android:background="@color/yellow"
@@ -36,7 +36,7 @@
         android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:text="SUBMIT"

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "913037396545",
+    "firebase_url": "https://csg-attendance-default-rtdb.firebaseio.com",
     "project_id": "csg-attendance",
     "storage_bucket": "csg-attendance.appspot.com"
   },

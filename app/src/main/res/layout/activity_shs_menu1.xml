@@ -24,7 +24,7 @@
         android:layout_marginTop="50dp"
         android:fontFamily="@font/font"
         android:gravity="center"
-        android:text="Time for IN and Out:"
+        android:text="Select among the following:"
         android:textColor="@color/black"
         android:textSize="20dp" />
 
@@ -40,7 +40,8 @@
             android:layout_height="wrap_content"
             android:text="Morning IN"
             android:background="@color/yellow"
-            android:textColor="@color/blue"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_marginRight="20dp" />
         <Button
             android:id="@+id/btn_morning_out"
@@ -48,7 +49,8 @@
             android:layout_height="wrap_content"
             android:text="Morning OUT"
             android:background="@color/yellow"
-            android:textColor="@color/blue" />
+            android:textColor="@color/black"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -63,7 +65,8 @@
             android:layout_height="wrap_content"
             android:text="Afternoon IN"
             android:background="@color/yellow"
-            android:textColor="@color/blue"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             android:layout_marginRight="20dp" />
         <Button
             android:id="@+id/btn_afternoon_out"
@@ -71,7 +74,8 @@
             android:layout_height="wrap_content"
             android:text="Afternoon OUT"
             android:background="@color/yellow"
-            android:textColor="@color/blue"
+            android:textColor="@color/black"
+            android:textStyle="bold"
             />
     </LinearLayout>
 

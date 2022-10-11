@@ -45,15 +45,15 @@ import java.util.Locale;
 public class QR_Scanning extends AppCompatActivity {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     StorageReference storageRef;
-    final long ONE_MEGABYTE = 1024 * 1024;
+    final long ONE_MEGABYTE = 1024 * 1024 *5;
 
     private CodeScanner mCodeScanner;
     private static final int MY_CAMERA_REQUEST_CODE = 100;
-    TextView tv_time,tv_timee,tv_details;
+    TextView tv_time,tv_timee,tv_details,tv_name;
     ImageView iv_profile;
     Button btn_submit;
 
-    String year,department,course,fullname,currentTime = " ";
+    String year,department,course,uid,fullname,currentTime = " ";
 
     LinearLayout linearLayout;
 
@@ -81,9 +81,10 @@ public class QR_Scanning extends AppCompatActivity {
         tv_time = findViewById(R.id.tv_time);
         tc_time = findViewById(R.id.digitalClock);
 
+
         tv_details = dialog.findViewById(R.id.tv_details);
         iv_profile = dialog.findViewById(R.id.ivProfile);
-
+        tv_name = dialog.findViewById(R.id.tv_name);
         tv_time.setText(time);
 
 
@@ -107,9 +108,9 @@ public class QR_Scanning extends AppCompatActivity {
                     String[] details_split = details.split("\n");
                     for (int i=0; i < details_split.length; i++){
                         fullname = details_split[0];
-                        department = details_split[1];
-                        course = details_split[2];
-                        year = details_split[3];
+                        course = details_split[1];
+                        year = details_split[2];
+                        uid = details_split[3];
                     }
 
                     Accounts acc = new Accounts(fullname,department,year,course,currentTime);
@@ -142,24 +143,24 @@ public class QR_Scanning extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        tv_details.setText(result.getText());
-
                         try{
-                            String details = tv_details.getText().toString();
+                            String details = result.getText();
                             String[] details_split = details.split("\n");
                             for (int i=0; i < details_split.length; i++){
                                 fullname = details_split[0];
-                                department = details_split[1];
-                                course = details_split[2];
-                                year = details_split[3];
+                                course = details_split[1];
+                                year = details_split[2];
+                                uid = details_split[3];
                             }
+                            tv_name.setText("Hi " + fullname + "♥");
+                            tv_details.setText(fullname+"\n"+course+"\n"+year);
                         } catch (ArrayIndexOutOfBoundsException e){
                             Snackbar snackbar = Snackbar
                                     .make(linearLayout, "Dili mana mao na QR Code chuy", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.white)).setBackgroundTint(getResources().getColor(R.color.red));
                             snackbar.show();
                         }
-                        System.out.println(fullname.replaceAll("\\s+","").toUpperCase());
-                        storageRef = FirebaseStorage.getInstance().getReference("/Profile/"+ fullname.replaceAll("\\s+","").toUpperCase());
+                        System.out.println(uid);
+                        storageRef = FirebaseStorage.getInstance().getReferenceFromUrl("gs://csg-attendance.appspot.com/Profile/"+uid.trim().toString());
                         storageRef.getBytes(ONE_MEGABYTE)
                                         .addOnSuccessListener(new OnSuccessListener<byte[]>() {
                                             @Override
@@ -176,10 +177,12 @@ public class QR_Scanning extends AppCompatActivity {
                                         }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(QR_Scanning.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+                                        System.out.println(e);
+                                        Toast.makeText(QR_Scanning.this, "Something went wrong!", Toast.LENGTH_LONG).show();
+
                                     }
                                 });
-                        Toast.makeText(QR_Scanning.this, result.getText(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(QR_Scanning.this, fullname+"\n"+course+"\n"+year, Toast.LENGTH_SHORT).show();
 
                         dialog.show();
                     }
