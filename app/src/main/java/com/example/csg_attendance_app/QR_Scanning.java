@@ -77,11 +77,11 @@ public class QR_Scanning extends AppCompatActivity {
 
         String time = getIntent().getStringExtra("Time");
 
-        btn_submit = dialog.findViewById(R.id.btn_submit);
+
         tv_time = findViewById(R.id.tv_time);
         tc_time = findViewById(R.id.digitalClock);
 
-
+        btn_submit = dialog.findViewById(R.id.btn_submit);
         tv_details = dialog.findViewById(R.id.tv_details);
         iv_profile = dialog.findViewById(R.id.ivProfile);
         tv_name = dialog.findViewById(R.id.tv_name);
@@ -110,10 +110,10 @@ public class QR_Scanning extends AppCompatActivity {
                         fullname = details_split[0];
                         course = details_split[1];
                         year = details_split[2];
-                        uid = details_split[3];
+
                     }
 
-                    Accounts acc = new Accounts(fullname,department,year,course,currentTime);
+                    Accounts acc = new Accounts(fullname,course,year,currentTime);
                     myRef.child(fullname).setValue(acc).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
@@ -153,7 +153,7 @@ public class QR_Scanning extends AppCompatActivity {
                                 uid = details_split[3];
                             }
                             tv_name.setText("Hi " + fullname + "♥");
-                            tv_details.setText(fullname+"\n"+course+"\n"+year);
+                            tv_details.setText(fullname+"\n"+course+"\n"+year+"\n");
                         } catch (ArrayIndexOutOfBoundsException e){
                             Snackbar snackbar = Snackbar
                                     .make(linearLayout, "Dili mana mao na QR Code chuy", Snackbar.LENGTH_LONG).setTextColor(getResources().getColor(R.color.white)).setBackgroundTint(getResources().getColor(R.color.red));

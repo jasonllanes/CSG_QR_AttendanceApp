@@ -11,11 +11,10 @@ public class Accounts {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Accounts(String fullname, String department, String year, String course,String time) {
+    public Accounts(String fullname, String course, String year,String time) {
         this.fullname = fullname;
-        this.department = department;
-        this.year = year;
         this.course = course;
+        this.year = year;
         this.time = time;
     }
 }
